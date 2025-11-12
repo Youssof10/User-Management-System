@@ -1,0 +1,86 @@
+/* Container for centering the entire page content */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f9fc;
+}
+
+/* Styling for the main profile card */
+.profile-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    text-align: center;
+}
+
+/* Heading style */
+h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+/* User details section */
+.user-details {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.detail-value {
+    color: #333;
+}
+
+/* Role badge styling - uses the class set in the HTML (role-user, role-admin) */
+.role-user {
+    color: #007bff; /* Blue for regular users */
+    font-weight: 700;
+}
+
+.role-admin {
+    color: #dc3545; /* Red for admins */
+    font-weight: 700;
+}
+
+/* Logout Button */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}

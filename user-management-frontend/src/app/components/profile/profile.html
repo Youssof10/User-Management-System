@@ -1,0 +1,39 @@
+<div class="profile-container">
+    <div class="profile-card">
+        <h2>Your Profile</h2>
+
+        <!-- Display user details if the 'user' object is present -->
+        <div *ngIf="user; else loading" class="user-details">
+            <div class="detail-item">
+                <span class="detail-label">First Name:</span>
+                <span class="detail-value">{{ user.firstName }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Last Name:</span>
+                <span class="detail-value">{{ user.lastName }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value">{{ user.email }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Role:</span>
+                <!-- Apply a class based on the role for visual distinction -->
+                <span class="detail-value role-{{ user.role }}">{{ user.role | uppercase }}</span>
+            </div>
+        </div>
+
+        <!-- Template for when user data is not yet loaded -->
+        <ng-template #loading>
+            <p>Loading user data or unauthorized...</p>
+        </ng-template>
+
+        <!-- Logout Button -->
+        <button 
+            (click)="onLogout()" 
+            class="btn btn-danger"
+        >
+            Logout
+        </button>
+    </div>
+</div>

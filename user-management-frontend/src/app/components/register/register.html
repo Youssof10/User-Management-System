@@ -1,0 +1,89 @@
+<div class="registration-container">
+    <h2>Create Account (Reactive Forms)</h2>
+
+    <!-- Error Message Display -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Registration Form: [formGroup] binds the HTML form to the TypeScript FormGroup -->
+    <form [formGroup]="registrationForm" (ngSubmit)="onRegisterSubmit()">
+
+        <!-- First Name Field -->
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" formControlName="firstName" class="form-control">
+            <!-- Validation Check: Check form control status -->
+            <div *ngIf="registrationForm?.get('firstName')?.invalid && (registrationForm?.get('firstName')?.dirty || registrationForm?.get('firstName')?.touched)"
+                class="text-danger">
+                <!-- Error Display: NOW uses bracket notation f['firstName'] -->
+                <div *ngIf="f['firstName']?.errors?.['required']">First Name is required.</div>
+            </div>
+        </div>
+
+        <!-- Last Name Field -->
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" formControlName="lastName" class="form-control">
+            <!-- Validation Check -->
+            <div *ngIf="registrationForm?.get('lastName')?.invalid && (registrationForm?.get('lastName')?.dirty || registrationForm?.get('lastName')?.touched)"
+                class="text-danger">
+                <!-- Error Display: NOW uses bracket notation f['lastName'] -->
+                <div *ngIf="f['lastName']?.errors?.['required']">Last Name is required.</div>
+            </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+            <!-- Validation Check -->
+            <div *ngIf="registrationForm?.get('email')?.invalid && (registrationForm?.get('email')?.dirty || registrationForm?.get('email')?.touched)"
+                class="text-danger">
+                <!-- Error Display: NOW uses bracket notation f['email'] -->
+                <div *ngIf="f['email']?.errors?.['required']">Email is required.</div>
+                <div *ngIf="f['email']?.errors?.['email']">Please enter a valid email address.</div>
+            </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password" class="form-control">
+            <!-- Validation Check -->
+            <div *ngIf="registrationForm?.get('password')?.invalid && (registrationForm?.get('password')?.dirty || registrationForm?.get('password')?.touched)"
+                class="text-danger">
+                <!-- Error Display: NOW uses bracket notation f['password'] -->
+                <div *ngIf="f['password']?.errors?.['required']">Password is required.</div>
+                <div *ngIf="f['password']?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+            </div>
+        </div>
+
+        <!-- Role Selection Field -->
+        <div class="form-group">
+            <label for="role">Select Role</label>
+            <select id="role" formControlName="role" class="form-control">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+            <!-- Validation Check -->
+            <div *ngIf="registrationForm?.get('role')?.invalid && (registrationForm?.get('role')?.dirty || registrationForm?.get('role')?.touched)"
+                class="text-danger">
+                <!-- Error Display: NOW uses bracket notation f['role'] -->
+                <div *ngIf="f['role']?.errors?.['required']">Role selection is required.</div>
+            </div>
+        </div>
+
+        <!-- Submit Button: Fixed Warning (removed ?) and uses bracket notation for validation -->
+        <button type="submit" [disabled]="registrationForm.invalid || isLoading" class="btn btn-primary">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{ isLoading ? 'Registering...' : 'Register' }}
+        </button>
+    </form>
+
+    <!-- Navigation Link to Login -->
+    <p class="mt-3">
+        Already have an account?
+        <a [routerLink]="['/login']" class="login-link">Login here</a>
+    </p>
+</div>
